@@ -38,18 +38,21 @@ Where `<type>` is one of `otp`, `passphrase`, or `password`. For example:
 
 ### OTP
 
-* SSH prompt: Please provide (user@server.tld) otp code:
-* Gopass secret name: ssh/otp/user@server.tld
+* SSH prompt: `Please provide (user@server.tld) otp code: `
+* Gopass secret name: `ssh/otp/user@server.tld`
+* Add or edit the secret: `gopass edit -c ssh/otp/user@server.tld`
 
 ### Passphrase
 
-* SSH prompt: Enter passphrase for key '/home/user/.ssh/id_rsa':
-* Gopass secret name: ssh/passphrase/home/user/.ssh/id_rsa
+* SSH prompt: `Enter passphrase for key '/home/user/.ssh/id_rsa': `
+* Gopass secret name: `ssh/passphrase/home/user/.ssh/id_rsa`
+* Add or edit the secret: `gopass edit -c ssh/passphrase/home/user/.ssh/id_rsa`
 
 ### Password
 
-* SSH prompt: user@server.tld's password:
-* Gopass secret name: ssh/password/user@server.tld
+* SSH prompt: `user@server.tld's password: `
+* Gopass secret name: `ssh/password/user@server.tld`
+* Add or edit the secret: `gopass edit -c ssh/password/user@server.tld`
 
 ## Contributing
 -------------
