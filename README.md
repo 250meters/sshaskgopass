@@ -2,15 +2,15 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/250meters/sshaskgopass.svg)](https://pkg.go.dev/github.com/250meters/sshaskgopass)
 
-**Sshaskgopass**
+**sshaskgopass**
 ================
 
-`Sshaskgopass` implements `ssh-askpass` and obtains passwords, passphrases, and OTP tokens directly from [Gopass](https://github.com/gopasspw/gopass).
+`sshaskgopass` implements `ssh-askpass` and obtains passwords, passphrases, and OTP tokens directly from [gopass](https://github.com/gopasspw/gopass).
 
 ## Install
 --------
 
-To install `Sshaskgopass`, run:
+To install `sshaskgopass`, run:
 ```shell
 go install https://github.com/250meters/sshaskgopass/cmd/sshaskgopass@latest
 ```
@@ -18,7 +18,7 @@ go install https://github.com/250meters/sshaskgopass/cmd/sshaskgopass@latest
 ## Setup
 -----
 
-Add the following exports to your shell's rc file to redirect SSH secret requests to `Sshaskgopass`:
+Add the following exports to your shell's rc file to redirect SSH secret requests to `sshaskgopass`:
 
 ```shell
 export SSH_ASKPASS=$(go env GOPATH)/bin/sshaskgopass
@@ -28,7 +28,7 @@ export SSH_ASKPASS_REQUIRE=force
 ## Secret Naming Convention
 -------------------------
 
-When calling Gopass, `Sshaskgopass` relies on a secret naming convention. The format is:
+When calling `gopass`, `sshaskgopass` relies on a secret naming convention. The format is:
 
 ```shell
 ssh/<type>/[rest of the secret]
