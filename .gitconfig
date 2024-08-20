@@ -1,0 +1,29 @@
+[core]
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    autocrlf = input
+    whitespace = trailing-space,space-before-tab,tab-in-indent
+    eol = lf
+    hooksPath = ./.githooks
+[push]
+    default = simple
+[branch]
+    autosetuprebase = always
+[merge]
+    ff = false
+[fetch]
+    prune = true
+[branch "*"]
+    rebase = true
+[pull]
+    rebase = true
+[commit]
+    gpgSign = true
+[push]
+    gpgSign = false
+[tag]
+    forceSignAnnotated = true
+    gpgSign = true
+[blame]
+    ignoreRevsFile = .git-blame-ignore-revs

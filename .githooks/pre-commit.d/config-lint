@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function echo_bold() {
+    echo -e "\033[01;34m$1\033[00m"
+}
+
+function echo_error() {
+    echo -e "\033[01;31m$1\033[00m"
+}
+
+if [ -z "$(git config user.signingKey)" ]; then
+    echo_error "Error: Your 'git config user.signingKey' must not be empty."
+    exit 1
+fi

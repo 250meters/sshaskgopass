@@ -1,0 +1,10 @@
+#!/bin/sh
+BRANCH=$(git symbolic-ref --short HEAD 2>&1)
+AUTHOR=$(git config --get user.name)
+
+case "$2 $3" in
+    " "|template*|squash*|merge*) #add title prefix for normal commits, templated commits, squash commits and merge commits
+        sed -i.bak -e "1 s#^#\[$BRANCH \- $AUTHOR\] #" $1 ;;
+
+    *);; #don't rewrite for ammends
+esac

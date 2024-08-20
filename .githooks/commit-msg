@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# determine branch; in some contexts, the branch might not be known (ie, within a rebase)
+BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+# determine the author
+AUTHOR=$(git config --get user.name)
+
+
+# if the branch is known, make sure the commit prefix includes this branch
+if [ "$BRANCH" != "" ]; then
+    MSGPREFIX="[$BRANCH - $AUTHOR]"
+    MSGPREFIXEXACTREGEX="^\\[$BRANCH - $AUTHOR\\]"
+
+    RES=$(head -n1 $1 | grep -E "$MSGPREFIXEXACTREGEX")
+    if [ -z "$RES" ]; then
+        echo "ERROR: malformed commit message"
+        echo "HINT: commit message should begin with: $MSGPREFIX"
+        exit 1;
+    fi
+fi
+
+# make sure the commit message starts with something that looks like a [branch - author] prefix
+MSGPREFIXPATTERNREGEX="^\\[.* - .*\\] "
+RES=$(head -n1 $1 | grep -E "$MSGPREFIXPATTERNREGEX")
+if [ -z "$RES" ]; then
+    echo "ERROR: malformed commit message"
+    echo "HINT: commit message should begin with: [branch-name - Author Name]"
+    exit 1;
+fi
+
+exit 0;
