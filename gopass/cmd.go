@@ -12,8 +12,11 @@ import (
 	"time"
 )
 
+// GopassPath represents the absolute path to the `gopass` executable.
 type GopassPath string
 
+// New returns a new instance of GopassPath with the provided path as default. If no path is provided,
+// it uses the value from the $GOPASS environment variable if set, otherwise defaults to "gopass".
 func New(gopassPath string) GopassPath {
 	if gopassPath == "" {
 		gopassPath = os.Getenv("GOPASS")
@@ -24,14 +27,17 @@ func New(gopassPath string) GopassPath {
 	return GopassPath(gopassPath)
 }
 
+// Otp runs the `gopass otp` command with the provided key and if successful it will return the OTP code.
 func (g GopassPath) Otp(ctx context.Context, key string) (code string, err error) {
 	return g.cmd(ctx, "otp", key)
 }
 
+// Passphrase runs the `gopass passphrase` command with the provided key and if successful it will return the requested passphrase
 func (g GopassPath) Passphrase(ctx context.Context, key string) (code string, err error) {
 	return g.cmd(ctx, "passphrase", key)
 }
 
+// Password runs the `gopass password` command with the provided key and if successfull it will return the requested passphrase
 func (g GopassPath) Password(ctx context.Context, key string) (code string, err error) {
 	return g.cmd(ctx, "password", key)
 }

@@ -10,33 +10,41 @@ import (
 	"golang.org/x/term"
 )
 
+// Prompt represents the literal SSH secret prompt a user normally sees.
 type Prompt string
 
+// IsOTP returns true if the prompt is requesting an OTP code.
 func (p Prompt) IsOTP() bool {
 	return strings.Contains(string(p), "code:")
 }
 
+// RequestedOtp extracts the OTP key from the prompt's text.
 func (p Prompt) RequestedOtp() string {
 	return p.between("(", ")")
 }
 
-// returns true if the promt matches "Enter passphrase for key '/path/to/key/file': "
+// IsPassphraseForKey returns true if the prompt is requesting a passphrase for a ssh key.
 func (p Prompt) IsPassphraseForKey() bool {
 	return strings.Contains(string(p), "passphrase for key")
 }
 
+// RequestedPassphraseForKey extracts the file path to the ssh key.
 func (p Prompt) RequestedPassphraseForKey() string {
 	return p.between("'", "'")
 }
 
+// IsPassword returns true if the prompt is requesting a password.
 func (p Prompt) IsPassword() bool {
 	return strings.Contains(string(p), "assword:")
 }
 
+// RequestedPassword extracts the name of requested password.
 func (p Prompt) RequestedPassword() string {
 	return p.before("'")
 }
 
+// AskPassword asks the user to input a password and returns it as a string. If an error occurs,
+// the function will return an empty string and an error message.
 func (p Prompt) AskPassword() (password string, err error) {
 	defer p.clearPrompt()
 	fmt.Fprint(os.Stderr, p)
@@ -47,6 +55,8 @@ func (p Prompt) AskPassword() (password string, err error) {
 	return string(bp), nil
 }
 
+// AskOther asks the user to input a response and returns it as a string. If an error occurs,
+// the function will return an empty string and an error message.
 func (p Prompt) AskOther() (resp string, err error) {
 	defer p.clearPrompt()
 	fmt.Fprint(os.Stderr, p)
