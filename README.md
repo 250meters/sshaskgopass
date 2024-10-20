@@ -8,7 +8,7 @@
 
 To install `sshaskgopass`, run:
 ```shell
-go install https://github.com/250meters/sshaskgopass/cmd/sshaskgopass@latest
+go install github.com/250meters/sshaskgopass@latest
 ```
 
 ## Setup
