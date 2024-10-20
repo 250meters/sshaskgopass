@@ -1,7 +1,7 @@
 **sshaskgopass [![Go Reference](https://pkg.go.dev/badge/github.com/250meters/sshaskgopass.svg)](https://pkg.go.dev/github.com/250meters/sshaskgopass)**
 ================
 
-`sshaskgopass` implements `ssh-askpass` and obtains passwords, passphrases, and OTP tokens directly from [gopass](https://github.com/gopasspw/gopass).
+`sshaskgopass` implements `ssh-askpass` to obtain passwords, passphrases, and OTP tokens directly from [gopass](https://github.com/gopasspw/gopass).
 
 ## Install
 ----------
